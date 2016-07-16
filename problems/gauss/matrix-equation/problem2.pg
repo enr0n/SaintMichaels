@@ -27,42 +27,29 @@ loadMacros(
 
 # Set a context
 Context("Matrix"); 
+# Fill in the parameters for A and b.
 
-# Define matrix to solve the system of equations
+# Row vectors for A
+@a1 = (2,6,-8);
+@a2 = (1,5,2);
+@a3 = (-3,-7,6);
+# b as a column vector
+@b = (-4,4,12);
 
-$A_matrix = Matrix([2,6,-8],
-                   [1,5,2],
-                   [-3,-7,6]);
-$b_vector = Matrix([[-4],
-                    [4],
-                    [12]]);
+$A_matrix = Matrix([$a1[0],$a1[1],$a1[2]],
+                   [$a2[0],$a2[1],$a2[2]],
+                   [$a3[0],$a3[1],$a3[2]]);
+$b_vector = Matrix([[$b[0]],
+                    [$b[1]],
+                    [$b[2]]]);
 
 # Create augmented matrix used for displaying solution 
-#
-# Unfortuantely, we don't have great ways
-# to manipulate matrices yet. See: 
-# http://webwork.maa.org/wiki/Linear_Algebra_Wishlist#.V4p9pe38tjU
-# For now this is the *best* way I can create an augmented matrix
-# from our given A and b.	
-@e = (0,0,0,0,0,0,0,0,0,0,0,0);
-$count = 0;
-for ($i=1;$i<=3;$i+=1) {
-    for ($j=1;$j<=3;$j+=1) {
-        $e[$count] = $A_matrix->element($i,$j);
-        $count += 1; 
-    }	
-}
-$k = 1;
-do {
-    $e[$count] = $b_vector->element($k,1);
-    $count += 1;
-    $k += 1;
-} while ($k <= 3);
-$Augmented_matrix = Matrix([$e[0],$e[1],$e[2],$e[9]],
-                           [$e[3],$e[4],$e[5],$e[10]],
-                           [$e[6],$e[7],$e[8],$e[11]]);
+$Augmented_matrix = Matrix([$a1[0],$a1[1],$a1[2],$b[0]],
+                           [$a2[0],$a2[1],$a2[2],$b[1]],
+                           [$a3[0],$a3[1],$a3[2],$b[2]]);
                            
 $LR_matrix = $A_matrix->decompose_LR();
+# This needs to have a 'no solution' case
 ($dim,$x_vector,$base) = $LR_matrix->solve_LR($b_vector);
 $SOLUTION = $x_vector;
 
