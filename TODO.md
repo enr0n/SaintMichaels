@@ -17,3 +17,6 @@
             solution vector (especially in the randomly generated ones.)
 
 	6.) Figure out a better way to grab answers for template_sys_eqs.
+       
+        7.) Write a script that will take in a template name, and appropriate 
+            parameters, and output a <problem>.pg
