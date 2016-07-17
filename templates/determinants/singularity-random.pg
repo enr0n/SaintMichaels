@@ -1,0 +1,121 @@
+# DESCRIPTION
+# This is a template for a problem
+# where the student must determine
+# if a matrix is singular, and provide 
+# the determinant of the matrix. 
+#
+# This Problem was authored by Nicholas Rosbrook
+# <nrosbrook(at)mail(dot)smcvt(dot)edu>
+# ENDDESCRIPTION
+
+## DBsubject('Linear Algebra')
+## KEYWORDS('determinants')
+## TitleText1('Linear Algebra')
+## EditionText1('3')
+## AuthorText1('Jim Hefferon')
+## Author('Nicholas Rosbrook')
+## Institution('St. Michael's College')
+
+# INIT
+
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+);
+
+# PROBLEM SET-UP
+
+# Set a context
+Context("Numeric"); 
+$dim = 3;
+@a = (0,0,0);
+@b = (0,0,0);
+@c = (0,0,0);
+
+# Generate random matrix
+$count = 0;
+do {
+    $a[$count] = random(-9,9,1);
+    $b[$count] = random(-9,9,1);
+    $c[$count] = random(-9,9,1); 
+    $count += 1;
+} until ($count == $dim);
+
+$A_matrix = Matrix( [$a[0],$b[0],$c[0]],
+		    [$a[1],$b[1],$c[1]],
+		    [$a[2],$b[2],$c[2]]	);
+# Compute the determinant
+$DET = $A_matrix->det();
+
+# TEXT SECTION
+
+$r_button = new_multiple_choice();
+$question_string = "The matrix is";
+$singular_string = "singular.";
+$nonsingular_string = "nonsingular.";
+# Nonsingular
+if ($DET != 0) {
+    $r_button->qa($question_string,$nonsingular_string);
+    $r_button->extra($singular_string);
+    $r_button->makeLast($nonsingular_string);
+    # Used in the solution section
+    @answer_strings = ("nonzero",$nonsingular_string);
+# Singular
+} else {
+    $r_button->qa($question_string,$singular_string);
+    $r_button->makeLast($nonsingular_string);
+    # Used in the solution section
+    @answer_strings = ("zero",$singular_string);
+}
+
+TEXT(beginproblem());
+Context()->texStrings;
+BEGIN_TEXT
+Let \{ A \} be the matrix
+$PAR
+\(
+    $A_matrix
+\)
+$PAR
+\{ $r_button->print_q(); \}
+\{ $r_button->print_a(); \}	
+$PAR
+This is true because 
+\( \det A = \)  
+\{ ans_rule(5) \}
+END_TEXT
+Context()->normalStrings;
+
+# ANSWER AND SOLUTION
+
+ANS(radio_cmp($r_button->correct_ans()));
+ANS($DET->cmp());
+
+# This of course needs to be handled. 
+Context()->texStrings;
+SOLUTION(EV3(<<'END_SOLUTION'));
+$PAR SOLUTION $PAR
+
+Recall that a matrix \( A \) is nonsingular if and only if
+\( \det A \neq 0 \). 
+So, we compute the determinant of \( A \) :
+$PAR
+
+\(
+    \det $A_matrix = ($a[0])($b[1])($c[2]) + 
+                     ($b[0])($c[1])($a[2]) + 
+                     ($c[0])($a[1])($b[2]) - 
+                     ($b[2])($c[1])($a[0]) - 
+                     ($c[2])($a[1])($b[0]) - 
+                     ($a[2])($b[1])($c[0])
+    = $DET 
+\)
+$PAR
+Since the determinant is $answer_strings[0] , the matrix is $answer_strings[1]
+
+END_SOLUTION
+Context()->normalStrings;
+
+ENDDOCUMENT();
