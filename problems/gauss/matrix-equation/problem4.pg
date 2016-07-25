@@ -1,0 +1,103 @@
+# DESCRIPTION
+# This is a simple problem on Gauss' method.
+# The question gives a matrix A, and vector b;
+# the student must solve the matrix equation Ax=b. 
+# 
+# This Problem was authored by Nicholas Rosbrook
+# <nrosbrook(at)mail(dot)smcvt(dot)edu>
+# ENDDESCRIPTION
+
+## DBsubject(Linear Algebra)
+## TitleText1('Linear Algebra')
+## EditionText1('3')
+## AuthorText1('Jim Hefferon')
+## Author('Nicholas Rosbrook')
+## Institution('St. Michael's College')
+
+# INIT
+
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+);
+
+# PROBLEM SET-UP
+
+# Set a context
+Context("Matrix"); 
+# Fill in the parameters for A and b.
+$A_matrix = Matrix([-5,0,7],
+                   [-1,6,8],
+                   [5,4,3]);
+$b_vector = Matrix([[13],
+                    [20],
+                    [-7]]);
+
+# Row vectors for A
+@a1 = (-5,0,7);
+@a2 = (-1,6,8);
+@a3 = (5,4,3);
+# b as a column vector
+@b = (13,20,-7);
+
+$A_matrix = Matrix([$a1[0],$a1[1],$a1[2]],
+                   [$a2[0],$a2[1],$a2[2]],
+                   [$a3[0],$a3[1],$a3[2]]);
+$b_vector = Matrix([[$b[0]],
+                    [$b[1]],
+                    [$b[2]]]);
+
+# Create augmented matrix used for displaying solution 
+$Augmented_matrix = Matrix([$a1[0],$a1[1],$a1[2],$b[0]],
+                           [$a2[0],$a2[1],$a2[2],$b[1]],
+                           [$a3[0],$a3[1],$a3[2],$b[2]]);
+                           
+$LR_matrix = $A_matrix->decompose_LR();
+# This needs to have a 'no solution' case
+($dim,$x_vector,$base) = $LR_matrix->solve_LR($b_vector);
+$SOLUTION = $x_vector;
+
+#Used for displaying the solution
+$I_matrix = Matrix([1,0,0,$x_vector->element(1,1)],
+                   [0,1,0,$x_vector->element(2,1)],
+                   [0,0,1,$x_vector->element(3,1)]);
+
+# TEXT SECTION
+TEXT(beginproblem());
+Context()->texStrings;
+BEGIN_TEXT
+Solve the matrix equation \( Ax = b \). Give the solution as a vector.
+$PAR
+\(
+A = $A_matrix, 
+b = $b_vector \\
+\)
+$PAR
+\( x = \)
+\{ $SOLUTION->ans_array(5)\}
+END_TEXT
+Context()->normalStrings;
+
+# ANSWER AND SOLUTION
+
+$showPartialCorrectAnswers = 1;
+ANS($SOLUTION->cmp());
+
+Context()->texStrings;
+SOLUTION(EV3(<<'END_SOLUTION'));
+$PAR SOLUTION $PAR
+Row reduce the augmented matrix for \( Ax = b \) :
+\[
+{\begin{matrix} $Augmented_matrix \cr \end{matrix}}\sim
+\begin{matrix}  $I_matrix \cr \end{matrix} 
+\]
+$PAR From which we obtain the solution:
+\[
+ x = $x_vector
+\]
+END_SOLUTION
+Context()->normalStrings;
+
+ENDDOCUMENT();
