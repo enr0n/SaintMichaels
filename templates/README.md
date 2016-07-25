@@ -15,3 +15,7 @@ NOTE THE FOLLOWING BEFORE USING TEMPLATES:
 
 (4) If there is a template for a question you want to use, but want to ask it in 
     a different way (3), it should be sufficient to edit the code in TEXT SECTION.
+
+(5) Some templates may have special conditions for acceptable input, or input format
+    e.g.) Providing vectors as row or column vectors. Read the templates attached
+    description if applicable.

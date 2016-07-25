@@ -1,22 +1,19 @@
 #############################################
 #
 # TODO for Linear Algebra problem sets--
-# keep this updated! -nr
+# keep this updated!
 #
 #############################################
 
-	1.) Update template_gauss.pg with proper vocabulary, and information section
+	- Write a script that will generate problems using given template name and 
+          inputs.
 
-	2.) Provide solutions for all problems.
+        - Figure out a way to support systems of equations with no solutions/infinitely
+          many solutions. I want a matrix-eqaution type template with safe random number
+          generation.
 
-	3.) Add some questions with multiple choice, word entry, etc.
+        - Create a useful template for homomorphism related questions.
 
-	4.) Make some problems that don't have solutions for all b.
+        - Finish set of baseline questions.
 
-	5.) Add proper checking for valid solutions when finding the 
-            solution vector (especially in the randomly generated ones.)
-
-	6.) Figure out a better way to grab answers for template_sys_eqs.
-       
-        7.) Write a script that will take in a template name, and appropriate 
-            parameters, and output a <problem>.pg
+(Last updated 07-25-16)
