@@ -27,14 +27,6 @@ loadMacros(
 
 # Set a context
 Context("Matrix"); 
-# Fill in the parameters for A and b.
-$A_matrix = Matrix([-5,0,7],
-                   [-1,6,8],
-                   [5,4,3]);
-$b_vector = Matrix([[13],
-                    [20],
-                    [-7]]);
-
 # Row vectors for A
 @a1 = (-5,0,7);
 @a2 = (-1,6,8);

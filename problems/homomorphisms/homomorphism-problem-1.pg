@@ -1,0 +1,81 @@
+# DESCRIPTION
+# This problem provides a function between
+# two vector spaces, and the student must 
+# determine if it is a homomorphism.
+# 
+# This Problem was authored by Nicholas Rosbrook
+# <nrosbrook(at)mail(dot)smcvt(dot)edu>
+# ENDDESCRIPTION
+
+## DBsubject('Linear Algebra')
+## KEYWORDS('homomorphism')
+## TitleText1('Linear Algebra')
+## EditionText1('3')
+## AuthorText1('Jim Hefferon')
+## Author('Nicholas Rosbrook')
+## Institution('St. Michael's College')
+
+# INIT
+
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"parserPopUp.pl",
+);
+
+# PROBLEM SET-UP
+# Part A strings
+$correct_answer_string_a = "The transformation is linear";
+$extra_answer_string_a = "The transformation is not linear";
+$a_popup = PopUp(["",$correct_answer_string_a,$extra_answer_string_a],$correct_answer_string_a);
+# Part B strings
+$correct_answer_string_b = "preserves addition";
+$extra_answer_string_b = "does not preserve addition";
+$b_popup = PopUp(["",$extra_answer_string_b,$correct_answer_string_b],$correct_answer_string_b);
+#Part C strings
+$correct_answer_string_c = "preserves scalar multiplication";
+$extra_answer_string_c = "does not preserve scalar multiplication";
+$c_popup = PopUp(["",$correct_answer_string_c,$extra_answer_string_c],$correct_answer_string_c);
+
+# Set a context
+Context("Numeric"); 
+# TEXT SECTION
+TEXT(beginproblem());
+Context()->texStrings;
+BEGIN_TEXT
+$PAR Determine if 
+\(
+    h : \mathbb{R}^3 \rightarrow \mathbb{R}^2
+\)
+ is a homomorphism, where $PAR
+\(
+    h \begin{pmatrix}x \cr y \cr z \end{pmatrix}
+    = \begin{pmatrix}x \cr x + y + z \end{pmatrix}
+\)
+
+\{ $a_popup->menu() \}
+ because it 
+\{ $b_popup->menu() \}
+ and 
+\{ $c_popup->menu() \}
+END_TEXT
+Context()->normalStrings;
+
+# ANSWER AND SOLUTION
+ANS($a_popup->cmp());
+ANS($b_popup->cmp());
+ANS($c_popup->cmp());
+
+Context()->texStrings;
+SOLUTION(EV3(<<'END_SOLUTION'));
+$PAR SOLUTION $PAR
+# Solution goes here
+#
+#
+# and ends here
+END_SOLUTION
+Context()->normalStrings;
+
+ENDDOCUMENT();
