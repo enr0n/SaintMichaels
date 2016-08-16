@@ -85,9 +85,9 @@ $PAR
 	$equation_string_3 = $b[2]
 \)
 $PAR
-\( x = \) \{ $x1->ans_rule(5)\}
-\( y = \) \{ $x2->ans_rule(5)\}
-\( z = \) \{ $x3->ans_rule(5)\}
+\( (x,y,z) =  \) ( \{ $x1->ans_rule(5)\} , 
+			       \{ $x2->ans_rule(5)\} ,
+			       \{ $x3->ans_rule(5)\} )
 END_TEXT
 Context()->normalStrings;
 
