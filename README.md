@@ -6,4 +6,3 @@ Problem Author(s):
 
 	Nicholas Rosbrook <nrosbrook(at)mail(dot)smcvt(dot)edu> - 2016
 
-test 
