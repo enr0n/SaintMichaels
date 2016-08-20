@@ -74,8 +74,8 @@ ANS($r2->cmp);
 Context()->texStrings;
 SOLUTION(EV3(<<'END_SOLUTION'));
 $PAR SOLUTION $PAR
+Applying Gauss's method results in a row of zeros. 
 
-$r1 $r2
 END_SOLUTION
 Context()->normalStrings;
 
