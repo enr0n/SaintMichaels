@@ -8,6 +8,8 @@
 # ENDDESCRIPTION
 
 ## DBsubject('Linear Algebra')
+## DBchapter(Determinants)
+## DBsection(Computing determinants)
 ## KEYWORDS('determinants')
 ## TitleText1('Linear Algebra')
 ## EditionText1('3')

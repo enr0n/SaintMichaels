@@ -8,6 +8,8 @@
 # ENDDESCRIPTION
 
 ## DBsubject(Linear Algebra)
+## DBchapter(Systems of linear equations)
+## DBsection(Systems with 3 variables)
 ## TitleText1('Linear Algebra')
 ## EditionText1('3')
 ## AuthorText1('Jim Hefferon')
@@ -45,6 +47,7 @@ for ($i=0;$i<3;$i++) {
 # The solution will be based on values of r1 and r2
 $r1=Real($r1);
 $r2=Real($r2);
+
 # TEXT SECTION
 TEXT(beginproblem());
 Context()->texStrings;
@@ -74,7 +77,8 @@ ANS($r2->cmp);
 Context()->texStrings;
 SOLUTION(EV3(<<'END_SOLUTION'));
 $PAR SOLUTION $PAR
-Applying Gauss's method results in a row of zeros. 
+Applying Gauss's method shows that this system is consistent if and only if
+\( b_3 = $r1 b_1 + $r2 b_2 \)
 
 END_SOLUTION
 Context()->normalStrings;

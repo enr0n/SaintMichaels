@@ -8,7 +8,8 @@
 # ENDDESCRIPTION
 
 ## DBsubject('Linear Algebra')
-## KEYWORDS('determinants')
+## DBchapter(Determinants)
+## DBsection(Applications)
 ## TitleText1('Linear Algebra')
 ## EditionText1('3')
 ## AuthorText1('Jim Hefferon')

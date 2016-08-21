@@ -10,6 +10,8 @@
 # ENDDESCRIPTION
 
 ## DBsubject(Linear Algebra)
+## DBchapter(Systems of linear equations)
+## DBsection(Systems with 3 variables)
 ## TitleText1('Linear Algebra')
 ## EditionText1('3')
 ## AuthorText1('Jim Hefferon')
@@ -62,7 +64,6 @@ $Augmented_matrix = Matrix([$a1[0],$a1[1],$a1[2],$b[0]],
                            
 $LR_matrix = $A_matrix->decompose_LR();
 ($dim,$x_vector,$base) = $LR_matrix->solve_LR($b_vector);
-# Round to the nearest one-hundreth
 $SOLUTION = Compute($x_vector)->with(
 	tolerance => 0.01,
 	tolType => "absolute",
@@ -96,7 +97,7 @@ $showPartialCorrectAnswers = 1;
 ANS($SOLUTION->cmp());
 
 # Format number output
-Context()->{format}{number} = "%.4f#";
+Context()->{format}{number} = "%.3f#";
 Context()->texStrings;
 SOLUTION(EV3(<<'END_SOLUTION'));
 $PAR SOLUTION $PAR
