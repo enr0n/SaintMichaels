@@ -24,6 +24,7 @@ loadMacros(
 "PGstandard.pl",
 "MathObjects.pl",
 "PGchoicemacros.pl",
+"answerHints.pl",
 );
 
 # PROBLEM SET-UP
@@ -55,6 +56,10 @@ $PAR
 \[ $f1 = $x[0] \]
 \[ $f2 = $x[1] \]
 \(k = \) \{ $SOLUTION->ans_rule(5) \}
+$PAR
+\{
+knowlLink("Click for a hint", value => "Row reduce the matrix. Notice what happens to the second row.");
+\}
 END_TEXT
 Context()->normalStrings;
 
