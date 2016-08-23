@@ -24,6 +24,7 @@ loadMacros(
 "PGstandard.pl",
 "MathObjects.pl",
 "PGchoicemacros.pl",
+"answerHints.pl",
 );
 
 # PROBLEM SET-UP
@@ -37,6 +38,9 @@ $r3=non_zero_random(-5,5,1);
 $r4=non_zero_random(-5,5,1);
 if ($r4 == $r2*$r3) {
 	$r4=$r4+non_zero_random(-3,3,1);
+	if ($r4 == 0) {
+		$r4 = $r4 + 1;
+	}
 }
 @a=(1,$r1);
 @b=($r2,'k');
@@ -48,7 +52,7 @@ $SOLUTION=Real($s);
 # Used for displaying the solution
 Context()->variables->add(y => 'Real');
 $f1=Formula("$a[0] x + $a[1] y")->reduce;
-$f2=Formula("$b[0] x + $b[1] y")->reduce;
+$f2=Formula("$b[0] x")->reduce;
 $temp = $x[1] - $r2*$x[0];
 # TEXT SECTION
 TEXT(beginproblem());
@@ -56,9 +60,13 @@ Context()->texStrings;
 BEGIN_TEXT
 For what value of \( k \) is the following system of equations inconsistent?
 $PAR
-\[ $f 1= $x[0] \]
-\[ $f2 = $x[1] \]
+\[ $f1= $x[0] \]
+\[ $f2 + $b[1] = $x[1] \]
 \(k = \) \{ $SOLUTION->ans_rule(5) \}
+$PAR
+\{
+knowlLink("Click for a hint", value => "Follow Gauss's method. What value of k would make this inconsistent?");
+\}
 END_TEXT
 Context()->normalStrings;
 
@@ -75,7 +83,7 @@ $PAR
                    $b[0] & $b[1] & $x[1] \end{matrix}\right]
 \]
 $PAR
-Then, apply the row operation \( $c\rho_1 + \rho_2 \)
+Then, apply the row operation \( \rho_2 \rightarrow $c\rho_1 + \rho_2 \)
 \[
 	\left[\begin{matrix} $a[0] & $a[1] & $x[0] \cr
                    0 & $b[1]-$SOLUTION & $temp \end{matrix}\right]

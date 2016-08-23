@@ -26,6 +26,7 @@ loadMacros(
 "PGstandard.pl",
 "MathObjects.pl",
 "PGchoicemacros.pl",
+"answerHints.pl",
 );
 
 # PROBLEM SET-UP
@@ -89,6 +90,10 @@ ${BITALIC}(Enter your answers accurate to two decimal places.)$EITALIC
 $PAR
 \( x = \)
 \{ $SOLUTION->ans_array(5)\}
+$PAR
+\{
+knowlLink("Click for a hint", value => "Apply Gauss's method.");
+\}
 END_TEXT
 Context()->normalStrings;
 

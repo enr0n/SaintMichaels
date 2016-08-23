@@ -23,6 +23,7 @@ loadMacros(
 "PGstandard.pl",
 "MathObjects.pl",
 "PGchoicemacros.pl",
+"answerHints.pl",
 );
 
 # PROBLEM SET-UP
@@ -101,6 +102,10 @@ $PAR
 \( (x,y,z) =  \) ( \{ $x1->ans_rule(5)\} , 
 			       \{ $x2->ans_rule(5)\} ,
 			       \{ $x3->ans_rule(5)\} )
+$PAR
+\{
+knowlLink("Click for a hint", value => "Express the system of equations as a matrix equation.");
+\}
 END_TEXT
 Context()->normalStrings;
 

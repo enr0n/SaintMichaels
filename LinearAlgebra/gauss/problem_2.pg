@@ -24,6 +24,7 @@ loadMacros(
 "PGstandard.pl",
 "MathObjects.pl",
 "PGchoicemacros.pl",
+"answerHints.pl",
 );
 
 # PROBLEM SET-UP
@@ -68,6 +69,10 @@ $PAR
 \]
 $PAR
 	\( b_3 \) = \{ $r1->ans_rule(5) \} \( b_1 \) + \{ $r2->ans_rule(5) \} \( b_2 \)
+$PAR
+\{
+knowlLink("Click for a hint", value => "Apply Gauss's method, and observe how the b's change.");
+\}
 END_TEXT
 Context()->normalStrings;
 
