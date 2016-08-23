@@ -1,0 +1,73 @@
+# DESCRIPTION
+# This is a simple problem on Gauss' method.
+# The student must find the value for k such 
+# that the solution has infinitely many solutions. 
+# 
+# This Problem was authored by Nicholas Rosbrook
+# <nrosbrook(at)mail(dot)smcvt(dot)edu>
+# ENDDESCRIPTION
+
+## DBsubject(Linear Algebra)
+## TitleText1('Linear Algebra')
+## EditionText1('3')
+## AuthorText1('Jim Hefferon')
+## Author('Nicholas Rosbrook')
+## Institution('St. Michael's College')
+
+# INIT
+
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+);
+
+# PROBLEM SET-UP
+
+# Set a context
+Context("Matrix"); 
+# Coefficients for system
+@a=(1,-1);
+@b=(2,-2);
+@x=(3,'k');
+# Compute the solution
+$c=(-1)*$b[0]/$a[0];
+$c=(-1)*$c*$x[0];
+$SOLUTION=Real($c);
+# TEXT SECTION
+TEXT(beginproblem());
+Context()->texStrings;
+BEGIN_TEXT
+For what value of \( k \) is the following system of equations consistent?
+$PAR
+\[ x_1 - x_2 = $x[0] \]
+\[ $b[0] x_1 + $b[1] x_2 = $x[1] \]
+\( k = \) \{ $SOLUTION->ans_rule(5) \}
+END_TEXT
+Context()->normalStrings;
+
+# ANSWER AND SOLUTION
+
+ANS($SOLUTION->cmp);
+Context()->texStrings;
+SOLUTION(EV3(<<'END_SOLUTION'));
+$PAR SOLUTION $PAR
+First, set up a matrix from our given system: 
+$PAR
+\[
+	\left[\begin{matrix} $a[0] & $a[1] & $x[0] \cr
+                   $b[0] & $b[1] & $x[1] \end{matrix}\right]
+\]
+$PAR
+Then, apply the row operation \( -$b[0]\rho_1 + \rho_2 \)
+\[
+	\left[\begin{matrix} $a[0] & $a[1] & $x[0] \cr
+                   0 & 0 & $x[1]-$SOLUTION \end{matrix}\right]
+\]
+$BR
+And so, there are infinitely many solutions when \( k = $SOLUTION \)
+END_SOLUTION
+Context()->normalStrings;
+
+ENDDOCUMENT();
